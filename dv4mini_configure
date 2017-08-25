@@ -1,0 +1,21 @@
+#!/bin/bash
+export WINEDEBUG=-all
+if [ $(ps axu | grep dv_serial.exe | wc -l) -gt 1 ]
+	then
+	echo ""
+	echo ""
+	echo "!!! REMEMBER TO START dv_serial.exe AGAIN AFTER CLOSING dv4mini.exe !!!"
+	echo ""
+	sleep 5
+	wine ~/.wine/drive_c/Program\ Files\ \(x86\)/DV4mini/dv4mini.exe &
+else
+	wine ~/.wine/drive_c/Program\ Files\ \(x86\)/DV4mini/dv_serial.exe > /dev/null &
+	echo "please wait... wine starting dv_serial.exe"
+	sleep 5
+	echo ""
+        echo ""
+        echo "!!! REMEMBER TO START dv_serial.exe AGAIN AFTER CLOSING dv4mini.exe !!!"
+        echo ""
+	sleep 15
+	wine ~/.wine/drive_c/Program\ Files\ \(x86\)/DV4mini/dv4mini.exe & 
+fi
