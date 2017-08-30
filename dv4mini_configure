@@ -1,21 +1,15 @@
 #!/bin/bash
 export WINEDEBUG=-all
 if [ $(ps axu | grep dv_serial.exe | wc -l) -gt 1 ]
-	then
-	echo ""
-	echo ""
-	echo "!!! REMEMBER TO START dv_serial.exe AGAIN AFTER CLOSING dv4mini.exe !!!"
-	echo ""
-	sleep 5
-	wine ~/.wine/drive_c/Program\ Files\ \(x86\)/DV4mini/dv4mini.exe &
+        then
+        echo -e "\n\n\nREMEMBER TO START dv_serial.exe (dv4mini_background) AGAIN AFTER CLOSING dv4mini.exe (dv4mini_configure)\nIf you wish to keep using the reflector\n\n\n"
+        sleep 5
+        wine ~/.wine/drive_c/Program\ Files\ \(x86\)/DV4mini/dv4mini.exe > /dev/null &
 else
-	wine ~/.wine/drive_c/Program\ Files\ \(x86\)/DV4mini/dv_serial.exe > /dev/null &
-	echo "please wait... wine starting dv_serial.exe"
-	sleep 5
-	echo ""
-        echo ""
-        echo "!!! REMEMBER TO START dv_serial.exe AGAIN AFTER CLOSING dv4mini.exe !!!"
-        echo ""
-	sleep 15
-	wine ~/.wine/drive_c/Program\ Files\ \(x86\)/DV4mini/dv4mini.exe & 
+        wine ~/.wine/drive_c/Program\ Files\ \(x86\)/DV4mini/dv_serial.exe > /dev/null &
+        echo -e "\n\n\nplease wait 30 seconds... wine starting dv_serial.exe...\n\n\n"
+        sleep 30
+        echo -e "\n\n\nREMEMBER TO START dv_serial.exe (dv4mini_background) AGAIN AFTER CLOSING dv4mini.exe (dv4mini_configure)\nIf you wish to keep using the reflector\n\n\n"
+        echo -e "If the graphical interfaces crashes and close, it's likely because dv_serial.exe didn't had enough time to fully come up\n\n\n"
+        wine ~/.wine/drive_c/Program\ Files\ \(x86\)/DV4mini/dv4mini.exe > /dev/null &
 fi
